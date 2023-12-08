@@ -1,0 +1,7 @@
+#!/bin/bash
+for modfile in $(modinfo -n vmmon vmnet); do
+  echo "Signing $modfile"
+  /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 \
+                                /misc/sign-vmware-modules/MOK.priv \
+                                /misc/sign-vmware-modules/MOK.der "$modfile"
+done
